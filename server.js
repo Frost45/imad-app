@@ -5,16 +5,40 @@ var path = require('path');
 var app = express();
 app.use(morgan('combined'));
 
-var articleOne = {
-    title: 'Article One | Sanjna Kashyap',
-    heading: 'Article One',
-    date: '15 September 2016',
-    content: `<p>
-                    This is the content for my first article! This is the content for my first article! This is the content for my first article! This is the content for my first article! This is the content for my first article! This is the content for my first article! This is the content for my first article! This is the content for my first article! This is the content for my first article! This is the content for my first article! This is the content for my first article! This is the content for my first article! This is the content for my first article! This is the content for my first article! This is the content for my first article!
-                </p>
-                <p>
-                    This is a second para. This is a second para. This is a second para. This is a second para. This is a second para. This is a second para. This is a second para. This is a second para. This is a second para. This is a second para. This is a second para. This is a second para. This is a second para. This is a second para. 
-                </p>`
+var articles = {
+    'article-one': {
+            title: 'Article One | Sanjna Kashyap',
+            heading: 'Article One',
+            date: '23 August 2017',
+            content: `<p>
+                            This is the content for my first article! This is the content for my first article! This is the content for my first article! This is the content for my first article! This is the content for my first article! This is the content for my first article! This is the content for my first article! This is the content for my first article! This is the content for my first article! This is the content for my first article! This is the content for my first article! This is the content for my first article! This is the content for my first article! This is the content for my first article! This is the content for my first article!
+                        </p>
+                        <p>
+                            This is a second para. This is a second para. This is a second para. This is a second para. This is a second para. This is a second para. This is a second para. This is a second para. This is a second para. This is a second para. This is a second para. This is a second para. This is a second para. This is a second para. 
+                        </p>`
+        },
+    'article-two': {
+            title: 'Article Two | Sanjna Kashyap',
+            heading: 'Article Two',
+            date: '30 August 2017',
+            content: `<p>
+                        Wow... Two articles already? Well done! Second article! Wow... Two articles already? Well done! Second article! Wow... Two articles already? Well done! Second article! Wow... Two articles already? Well done! Second article! Wow... Two articles already? Well done! Second article! Wow... Two articles already? Well done! Second article! Wow... Two articles already? Well done! Second article! Wow... Two articles already? Well done! Second article! Wow... Two articles already? Well done! Second article!
+                    </p>
+                    <p>
+                        This is a second para. This is a second para. This is a second para. This is a second para. This is a second para. This is a second para. This is a second para. This is a second para. This is a second para. This is a second para. This is a second para. This is a second para. This is a second para. This is a second para. 
+                    </p>`
+        },
+    'article-three': {
+            title: 'Article Three | Sanjna Kashyap',
+            heading: 'Article Three',
+            date: '1 September 2017',
+            content: `<p>
+                        All for three. All for three. All for three. All for three. All for three. All for three. All for three. All for three. All for three. All for three. All for three. All for three. All for three. All for three. All for three. All for three. All for three. All for three. All for three. All for three. All for three. All for three. All for three. All for three. All for three. All for three. All for three. All for three. All for three. All for three. All for three. All for three. All for three. All for three. All for three. All for three. All for three. All for three. All for three. All for three. All for three. All for three. All for three. All for three. All for three. All for three. All for three. All for three. All for three. All for three. All for three. All for three. All for three. All for three. All for three. All for three. All for three.
+                    </p>
+                    <p>
+                        This is a second para. This is a second para. This is a second para. This is a second para. This is a second para. This is a second para. This is a second para. This is a second para. This is a second para. This is a second para. This is a second para. This is a second para. This is a second para. This is a second para. 
+                    </p>`
+        }
 };
 
 
@@ -59,16 +83,8 @@ app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'index.html'));
 });
 
-app.get('/article-one', function (req, res) {
-    res.send(CreateTemplate(articleOne));
-});
-
-app.get('/article-two', function (req, res) {
-    res.sendFile(path.join(__dirname, 'ui', 'article-two.html'));
-});
-
-app.get('/article-three', function (req, res) {
-    res.sendFile(path.join(__dirname, 'ui', 'article-three.html'));
+app.get('/:articleName', function (req, res) {
+    res.send(CreateTemplate(articles[articleName]));
 });
 
 app.get('/ui/style.css', function (req, res) {
