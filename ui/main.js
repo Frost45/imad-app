@@ -3,7 +3,7 @@ console.log('Loaded!');
 //Move the image to the right
 var img = document.getElementById('madi');
 
-var maginLeft=0;
+var marginLeft=0;
 
 function moveRight() {
     marginLeft = marginLeft+10;
